@@ -1,0 +1,81 @@
+<script type="text/javascript" src="https://dl.dropboxusercontent.com/s/day61n69a2aseh2/statusServer.js"></script>
+<script type="text/javascript" src="https://dl.dropboxusercontent.com/s/csfml9qfxkjic43/dns_servers.js"></script>
+<!--HTML-->
+<div align=center>
+<table bgcolor="white" border=1 width=195>
+<tr>
+	<td colspan=2 align=center id="online"></td>
+	</tr>
+<tr>
+	<td><b>Host:</b></td>
+	<td align=center id="host"></td>
+	</tr>
+<tr>
+	<td><b>Version:</b></td>
+	<td align=center id="version"></td>
+	</tr>
+<tr>
+	<td><b>IP:</b></td>
+	<td align=center id="ip"></td>
+	</tr>
+<tr>
+	<td><b>Port:</b></td>
+	<td align=center id="port"></td>
+	</tr>
+<tr>
+	<td><b>Pass:</b></td>
+	<td align="center" valign="center" id="password"></td>
+	</tr>
+<tr>
+	<td><b>Secured:</b></td>
+	<td align="center" valign="center" id="secured"></td>
+	</tr>
+<tr>
+	<td><b>World:</b></td>
+	<td align=center id="worldname"></td>
+	</tr>
+<tr>
+	<td><b>Players:</b></td>
+	<td align="center">(<font id="current"></font>/<font id="max"></font>)</td>
+	</tr>
+<tr>
+	<td colspan=2 id="listPlayers"></td>
+	</tr>
+</table>
+Time online: <font id="time"></font>
+<!---/HTML-->
+<script type="text/javascript">
+	if(isOnline()){
+		document.getElementById("online").innerHTML='<font color="green"><b>ONLINE</b></font>';
+	}else{
+		document.getElementById("online").innerHTML='<font color="red"><b>OFFLINE</b></font>';
+	}
+	document.getElementById("host").innerHTML=getHostName();
+	document.getElementById("version").innerHTML=getServerVersion();
+        document.getElementById("ip").innerHTML=getDNS(getHostName());
+	document.getElementById("port").innerHTML=getServerPort();
+	document.getElementById("current").innerHTML=getNumberOfPlayers();
+	document.getElementById("max").innerHTML=getMaxPlayers();
+	document.getElementById("time").innerHTML=getTimeOnline();
+	document.getElementById("worldname").innerHTML=getWorldName();
+	var i;
+	var lp=getPlayersList();
+	var s="";
+	for(i=0;i<getNumberOfPlayers();i++){
+		s=s+" "+(i+1)+". "+lp[i]+"<br>";
+	}
+	document.getElementById("listPlayers").innerHTML=s;
+	if(isSecured()){
+document.getElementById("secured").innerHTML='<img height=16 src="http://i469.photobucket.com/albums/rr57/razorbreak/TerrariaServerGUI/yes_zps96db4a79.png">';
+	}else{
+document.getElementById("secured").innerHTML='<img height=16 src="http://i469.photobucket.com/albums/rr57/razorbreak/TerrariaServerGUI/no_zps768d93e3.png">';
+	}
+	if(hasPassword()){
+document.getElementById("password").innerHTML='<img height=16 src="http://i469.photobucket.com/albums/rr57/razorbreak/TerrariaServerGUI/yes_zps96db4a79.png">';
+	}else{
+document.getElementById("password").innerHTML='<img height=16 src="http://i469.photobucket.com/albums/rr57/razorbreak/TerrariaServerGUI/no_zps768d93e3.png">';
+	}
+</script>
+<br />
+<a href="http://razorbreakrestringedzone.blogspot.com.es/2013/08/descarga-y-manual-de-uso-de.html">Descarga y manual de TerrariaServerGUI</a>
+</div>
